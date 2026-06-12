@@ -1,7 +1,7 @@
 {
   "name": "order-kuch-bhi",
   "version": "1.0.0",
-  "description": "Autonomous food ordering CLI agent for Swiggy and Zomato — powered by Claude (or any LLM)",
+  "description": "Order food from Swiggy & Zomato using AI — reads your order history, finds nearby discounts, and places a COD order from your terminal.",
   "type": "module",
   "bin": {
     "kuch-bhi": "./dist/bin/kuch-bhi.js"
