@@ -1,81 +1,82 @@
 # kuch-bhi
 
-Autonomous food ordering CLI agent for Swiggy and Zomato. Connects to the official MCP servers for both platforms, reads your order history, finds the best nearby deals, and orders for you — with your confirmation.
+Order food from Swiggy and Zomato using AI — without opening the app.
 
-## How it works
-
-1. Fetches your past orders from both Swiggy and Zomato
-2. Finds nearby restaurants with active discounts matching your taste
-3. Presents you a ranked list of suggestions
-4. You pick one — it adds to cart, applies a coupon, and places the order via Cash on Delivery
+It looks at your order history on both platforms, finds nearby restaurants with active discounts, and shows you the best options. You pick one, it places the order via Cash on Delivery.
 
 ## Requirements
 
 - Node.js 18+
-- A Swiggy account and/or a Zomato account
-- An LLM API key (Claude by default, OpenAI and Ollama also supported)
+- A Swiggy and/or Zomato account
+- One of: Claude API key, OpenAI API key, or [Ollama](https://ollama.com) running locally (free)
 
 ## Setup
 
-### 1. Connect your accounts (one-time)
+### 1. Connect your accounts (one-time per platform)
 
 ```bash
-# Connect Swiggy
 npx kuch-bhi connect swiggy
-
-# Connect Zomato
 npx kuch-bhi connect zomato
 ```
 
-Each command opens your browser for OAuth login. Credentials are saved to `~/.config/kuch-bhi/config.json` and never leave your machine.
+Each command opens your browser to log in. Your credentials are saved locally at `~/.config/kuch-bhi/config.json` and never sent anywhere else.
 
-### 2. Set your LLM (pick one)
+### 2. Set your AI provider (pick one)
 
-**Claude** (default):
+**Ollama — free, no API key, runs on your machine:**
+```bash
+# Install Ollama from https://ollama.com, then pull a model:
+ollama pull llama3.1:8b
+
+export LLM_PROVIDER=ollama
+export OLLAMA_MODEL=llama3.1:8b
+```
+
+**Claude (Anthropic):**
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-**Ollama** (free, runs locally — no API key needed):
-```bash
-# Make sure Ollama is running, then:
-export LLM_PROVIDER=ollama
-export OLLAMA_MODEL=llama3.1:8b   # or any model you have pulled
-```
-
-**OpenAI**:
+**OpenAI:**
 ```bash
 export LLM_PROVIDER=openai
 export OPENAI_API_KEY=sk-...
 ```
 
-## Usage
+## Run
 
 ```bash
 npx kuch-bhi
 ```
 
-That's it. The agent researches both platforms and presents suggestions. You pick, it orders.
+The agent will research both Swiggy and Zomato, then show you a ranked list like:
 
+```
+  1. [ZOMATO] RollsKing — Chicken Hot-shot Protein Roll ₹215 🏷 70% off · 4.2★ · 30 min
+  2. [SWIGGY] Charcoal Eats — Chicken Biryani ₹219 · 4.3★ · 35 min
+  ...
+
+Pick a number (1–6):
+```
+
+After you pick, it asks for one final confirmation before placing the order.
 
 ## Claude Code slash command
 
-If you use [Claude Code](https://claude.ai/code), add the slash command by creating `.claude/commands/kuch-bhi.md` in your project:
+If you use [Claude Code](https://claude.ai/code), you can type `/kuch-bhi` directly in your editor instead of switching to a terminal.
+
+Create `.claude/commands/kuch-bhi.md` in your project with:
 
 ```markdown
-Run the kuch-bhi food ordering agent end-to-end:
-
-1. Run: `npx kuch-bhi suggest 2>&1`
-2. Parse the line starting with `KUCH_BHI_SUGGESTIONS:` as JSON.
-3. Present options to the user via AskUserQuestion.
-4. Run: `npx kuch-bhi place '<selected-json>'`
+Run the kuch-bhi food ordering agent:
+1. Run `npx kuch-bhi suggest 2>&1` and parse the KUCH_BHI_SUGGESTIONS JSON line from the output.
+2. Show the suggestions to the user via AskUserQuestion and let them pick one.
+3. Run `npx kuch-bhi place '<selected-json>'` to place the order.
 ```
-
-Then type `/kuch-bhi` in Claude Code to order without leaving your editor.
 
 ## Payment
 
-Always uses **Cash on Delivery**. No card or UPI details needed.
+Always Cash on Delivery. No card or UPI details needed.
 
 ## License
 
