@@ -29,16 +29,24 @@ npx kuch-bhi connect zomato
 
 Each command opens your browser for OAuth login. Credentials are saved to `~/.config/kuch-bhi/config.json` and never leave your machine.
 
-### 2. Set your API key
+### 2. Set your LLM (pick one)
 
+**Claude** (default):
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-Or create a `.env` file in your working directory:
-
+**Ollama** (free, runs locally — no API key needed):
+```bash
+# Make sure Ollama is running, then:
+export LLM_PROVIDER=ollama
+export OLLAMA_MODEL=llama3.1:8b   # or any model you have pulled
 ```
-ANTHROPIC_API_KEY=sk-ant-...
+
+**OpenAI**:
+```bash
+export LLM_PROVIDER=openai
+export OPENAI_API_KEY=sk-...
 ```
 
 ## Usage
@@ -49,15 +57,6 @@ npx kuch-bhi
 
 That's it. The agent researches both platforms and presents suggestions. You pick, it orders.
 
-## LLM providers
-
-Claude (Anthropic) is used by default. You can switch via environment variables — no code changes needed.
-
-| Provider | Env vars |
-|---|---|
-| Claude (default) | `ANTHROPIC_API_KEY` |
-| OpenAI | `LLM_PROVIDER=openai OPENAI_API_KEY=sk-...` |
-| Ollama (local, no key) | `LLM_PROVIDER=ollama OLLAMA_MODEL=llama3.1:8b` |
 
 ## Claude Code slash command
 
