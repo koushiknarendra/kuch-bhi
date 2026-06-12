@@ -2,7 +2,7 @@
 
 > **Order food from Swiggy & Zomato using AI — without opening the app.**
 
-[![npm](https://img.shields.io/npm/v/@kaush1k/kuch-bhi)](https://www.npmjs.com/package/@kaush1k/kuch-bhi)
+[![npm](https://img.shields.io/npm/v/order-kuch-bhi)](https://www.npmjs.com/package/order-kuch-bhi)
 [![license](https://img.shields.io/github/license/koushiknarendar/kuch-bhi)](LICENSE)
 [![node](https://img.shields.io/node/v/kuch-bhi)](https://nodejs.org)
 
@@ -15,7 +15,7 @@ Works with **Claude**, **OpenAI**, or **Ollama** (free, runs locally).
 ## Demo
 
 ```
-$ npx @kaush1k/kuch-bhi
+$ npx order-kuch-bhi
 
 Researching Swiggy and Zomato...
 
@@ -71,8 +71,8 @@ Confirm order? [y/N]: y
 ### 1. Connect your accounts (one-time)
 
 ```bash
-npx @kaush1k/kuch-bhi connect swiggy
-npx @kaush1k/kuch-bhi connect zomato
+npx order-kuch-bhi connect swiggy
+npx order-kuch-bhi connect zomato
 ```
 
 Opens your browser to log in. Credentials saved locally at `~/.config/kuch-bhi/config.json` — never sent anywhere else.
@@ -102,7 +102,7 @@ export OPENAI_API_KEY=sk-...
 ### 3. Order
 
 ```bash
-npx @kaush1k/kuch-bhi
+npx order-kuch-bhi
 ```
 
 ---
@@ -115,9 +115,9 @@ Create `.claude/commands/kuch-bhi.md` in your project:
 
 ```markdown
 Run the kuch-bhi food ordering agent:
-1. Run `npx @kaush1k/kuch-bhi suggest 2>&1` and parse the KUCH_BHI_SUGGESTIONS JSON line.
+1. Run `npx order-kuch-bhi suggest 2>&1` and parse the KUCH_BHI_SUGGESTIONS JSON line.
 2. Show the suggestions to the user via AskUserQuestion and let them pick one.
-3. Run `npx @kaush1k/kuch-bhi place '<selected-json>'` to place the order.
+3. Run `npx order-kuch-bhi place '<selected-json>'` to place the order.
 ```
 
 ---

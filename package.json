@@ -1,5 +1,5 @@
 {
-  "name": "@kaush1k/kuch-bhi",
+  "name": "order-kuch-bhi",
   "version": "1.0.0",
   "description": "Autonomous food ordering CLI agent for Swiggy and Zomato — powered by Claude (or any LLM)",
   "type": "module",
