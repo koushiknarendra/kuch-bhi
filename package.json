@@ -1,0 +1,51 @@
+{
+  "name": "kuch-bhi",
+  "version": "1.0.0",
+  "description": "Autonomous food ordering CLI agent for Swiggy and Zomato — powered by Claude (or any LLM)",
+  "type": "module",
+  "bin": {
+    "kuch-bhi": "./dist/bin/kuch-bhi.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx bin/kuch-bhi.ts",
+    "start": "node dist/bin/kuch-bhi.js",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "swiggy",
+    "zomato",
+    "food",
+    "ordering",
+    "agent",
+    "mcp",
+    "claude",
+    "llm",
+    "ai",
+    "cli"
+  ],
+  "author": "koushiknarendar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/koushiknarendar/kuch-bhi"
+  },
+  "homepage": "https://github.com/koushiknarendar/kuch-bhi#readme",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.104.1",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "commander": "^12.0.0",
+    "open": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.0.0",
+    "typescript": "^5"
+  }
+}
